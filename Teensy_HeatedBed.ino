@@ -5,6 +5,19 @@
 
    Notes:
    - When temp = 511 temp probe resistance is 100k
+
+
+Example output to serial console:
+
+------------- cnt: 1 -------------
+Analog value: 537
+i: 23.78 nA
+Vo: 2.62 V
+Power: 118.77 nW
+Rt: 110.49 kOhm
+Temperature: 22.94 C
+
+   
 */
 // Constants
 const float vcc = 5; // This value is likely wrong so don't actually use it
@@ -13,7 +26,6 @@ const float hyst = 1.5;
 const int tstate = 32; // Traget state
 const int ledPin = 10;
 const int anaPin = 0;
-
 // Variables
 int ana = 0;
 int state = 0;
@@ -22,12 +34,10 @@ float lasttemp = 0;
 float vo = 0;
 float rt = 0;
 float i = 0;
-
 // Arrays
 float rtab[] = {1.6419, 1.8548, 2.1008, 2.3861, 2.7179, 3.1050, 3.5581, 4.0901, 4.7170, 5.4584, 6.3383, 7.3867, 8.6407, 10.147, 11.963, 14.164, 16.841, 20.114, 24.136, 29.100, 35.262, 42.950, 52.598, 64.776, 80.239, 100.00, 125.42, 158.34, 201.27, 257.69, 332.40};
 float ttab[] = {150.00, 145.00, 140.00, 135.00, 130.00, 125.00, 120.00, 115.00, 110.00, 105.00, 100.00, 95.000, 90.000, 85.000, 80.000, 75.000, 70.000, 65.000, 60.000, 55.000, 50.000, 45.000, 40.000, 35.000, 30.000, 25.000, 20.000, 15.000, 10.000, 5.0000, 0.0000};
 int arrSize = sizeof(rtab) / sizeof(float); // calculate array size
-
 // Count
 int cnt = 0;
 
@@ -95,11 +105,11 @@ void loop() {
   Serial.println(ana);
 
   Serial.print("i: ");
-  Serial.print(i * 1000, 3);
+  Serial.print(i * 1000);
   Serial.println(" nA");
 
   Serial.print("Vo: ");
-  Serial.print(vo, 5);
+  Serial.print(vo);
   Serial.println(" V");
 
   Serial.print("Power: ");
@@ -108,10 +118,11 @@ void loop() {
   
   Serial.print("Rt: ");
   Serial.print(rt);
-  Serial.println(" K Ohm");
+  Serial.println(" kOhm");
   
   Serial.print("Temperature: ");
-  Serial.println(temp, 3);
+  Serial.print(temp);
+  Serial.println(" C");
 
   delay(1000);
 }
