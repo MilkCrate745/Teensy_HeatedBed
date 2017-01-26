@@ -83,7 +83,7 @@ void loop() {
 
  // Heating element logic
   if (lasttemp == 0) lasttemp = temp;
-  if (lasttemp != temp){
+  if (temp != lasttemp){
     if (state == 0 && temp >= (tstate + hyst)){
       digitalWrite(ledPin, LOW); 
       state = 1;
@@ -93,7 +93,8 @@ void loop() {
       state = 0;
     }  
   }
-
+  
+  lasttemp = temp;
   cnt = cnt + 1;
 
   Serial.print("------------- ");
