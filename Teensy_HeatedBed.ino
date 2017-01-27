@@ -19,13 +19,14 @@ Temperature: 22.94 C
 
    
 */
+// Set I/O pins
+const int ledPin = 10;
+const int anaPin = 0;
 // Constants
 const float vcc = 5; // This value is likely wrong so don't actually use it
 const float r = 100; // kohm 
 const float hyst = 1.5;
 const int tstate = 32; // Traget state
-const int ledPin = 10;
-const int anaPin = 0;
 // Variables
 int ana = 0;
 int state = 0;
